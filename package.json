@@ -1,0 +1,28 @@
+{
+  "name": "blockchainnd-privateblockchain",
+  "version": "1.0.0",
+  "description": "This project creates a Blockchain application to store data into the blocks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorenzolucido/BlockchainND-PrivateBlockchain.git"
+  },
+  "author": "Lorenzo Lucido",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lorenzolucido/BlockchainND-PrivateBlockchain/issues"
+  },
+  "homepage": "https://github.com/lorenzolucido/BlockchainND-PrivateBlockchain#readme",
+  "dependencies": {
+    "bitcoinjs-lib": "^5.2.0",
+    "bitcoinjs-message": "^2.2.0",
+    "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "hex2ascii": "0.0.3",
+    "morgan": "^1.10.0"
+  }
+}

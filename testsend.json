@@ -1,0 +1,10 @@
+{
+    "address":"mhiJzNTbqW3VVLPMfnWBHqM5h973fU6bXW",
+    "signature":"IE0CMygEs6XcQsrclxOhuQUA/uGVcEV1AEq9WYcILEccWC8pN6hgr8TagB6xVQMCUwvx1U1z2cksN2mbK+RMyNU=",
+    "message":"mhiJzNTbqW3VVLPMfnWBHqM5h973fU6bXW:1619578650:starRegistry",
+    "star":{
+        "dec": "68 52 56.9",
+        "ra": "16h 29m 1.0s",
+        "story": "Testing the story 5!"
+    }
+}
