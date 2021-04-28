@@ -212,7 +212,7 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             let blocksAreValid = (await Promise.all(self.chain.map(b => b.validate())))
             let prevHashAreValid = [true].concat(self.chain.filter(blk => blk.height>0).map(blk => self.chain[blk.height-1].hash == blk.previousBlockHash))
-            let invalidList = self.chain.map(b => b.height).filter((e, i) => !blocksAreValid[i] || !prevHashAreValid[i]) // blocksAreValid.map((e, i) => e && prevHashAreValid[i])            
+            let invalidList = self.chain.map(b => b.height).filter((e, i) => !blocksAreValid[i] || !prevHashAreValid[i])
             resolve(invalidList)
         });
     }
