@@ -76,7 +76,7 @@ class Blockchain {
                 self.chain.push(block);        
                 self.height += 1;
 
-                let chainIsValid = (await self.validateChain()).every(v => v == true)
+                let chainIsValid = (await self.validateChain()).length == 0
                 if(chainIsValid) {
                     resolve(block)
                 }
@@ -194,7 +194,9 @@ class Blockchain {
         let self = this;
         let stars = [];
         return new Promise((resolve, reject) => {
-            resolve(self.chain.map(x=>x.getBData()).filter(x=>x.address==address).map(x=>x.star))
+            resolve(self.chain.map(x=>x.getBData()).filter(x=>x.address==address)
+                    .map((x) => { return {owner:x.address, star:x.star} })
+                )
         });
     }
 
@@ -208,16 +210,10 @@ class Blockchain {
         let self = this;
         let errorLog = [];
         return new Promise(async (resolve, reject) => {
-            let blocksAreValid = (await Promise.all(self.chain.map(b => b.validate()))) //.every(v => v == true)
-            let prevHashAreValid = [true].concat(self.chain.filter(blk => blk.height>0).map(blk => self.chain[blk.height-1].hash == blk.previousBlockHash)) //.every(v => v == true)            
-            let validList = blocksAreValid.map((e, i) => e && prevHashAreValid[i])            
-            if(validList.every(v => v == true)){
-                resolve(validList)
-            }
-            else {
-                reject(validList)
-            }
-            
+            let blocksAreValid = (await Promise.all(self.chain.map(b => b.validate())))
+            let prevHashAreValid = [true].concat(self.chain.filter(blk => blk.height>0).map(blk => self.chain[blk.height-1].hash == blk.previousBlockHash))
+            let invalidList = self.chain.map(b => b.height).filter((e, i) => !blocksAreValid[i] || !prevHashAreValid[i]) // blocksAreValid.map((e, i) => e && prevHashAreValid[i])            
+            resolve(invalidList)
         });
     }
 

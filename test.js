@@ -35,5 +35,7 @@ const Blockchain = require('./src/blockchain.js');
     console.log(`block valid: ${await (await blockchain.getBlockByHeight(1)).validate()}`)
     console.log(blockchain.chain)
     console.log(`chain valid: ${await blockchain.validateChain()}`)
+
+    console.log(await blockchain.getStarsByWalletAddress('mhiJzNTbqW3VVLPMfnWBHqM5h973fU6bXW'))
     
 })();

@@ -42,20 +42,16 @@ class Block {
             let currHash = self.hash;
             // Recalculate the hash of the Block
             // Comparing if the hashes changed
-            // Returning the Block is not valid
-            let testBlock = new Block("");
-            testBlock.body = self.body;
-            testBlock.height = self.height;
-            testBlock.previousBlockHash = self.previousBlockHash;
-            testBlock.time = self.time;
-            let newHash = SHA256(JSON.stringify(testBlock)).toString();            
+            // Returning the Block is not valid            
+            let cloneBlock = {...self}
+            cloneBlock.hash = null
+            let newHash = SHA256(JSON.stringify(cloneBlock)).toString();            
             
             if(currHash == newHash) {
                 resolve(true);
             }
-            // Returning the Block is valid
             else {
-                reject(false);
+                resolve(false);
             }
         });
     }
